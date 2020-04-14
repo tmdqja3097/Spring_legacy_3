@@ -2,7 +2,44 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean class="com.iu.s3.robot.LeftArm" id="leftArm">
+		<property name="name" value="iu"></property>
+		<property name="size" value="20"></property>
+	</bean>
+	
+	<bean class="com.iu.s3.robot.RightArm" id="rightArm">
+		<constructor-arg name="color" value="red"></constructor-arg>
+		<constructor-arg name="power" value="30"></constructor-arg> 
 		
+		<!-- <constructor-arg index="0" value="20"></constructor-arg>
+		<constructor-arg index="1" value="blue"></constructor-arg> -->
+		
+		<!-- <constructor-arg type="java.lang.Integer" value="20"></constructor-arg>
+		<constructor-arg type="java.lang.String" value="red"></constructor-arg> -->
+	</bean>
+	
+	<bean class="com.iu.s3.robot.Robot" id="robot">
+		<property name="leftArm" ref="leftArm"></property>
+		<property name="rightArm" ref="rightArm"></property>
+	</bean> 
+	
+	<bean class="com.iu.s3.robot.Robot" id="robot2">
+		<constructor-arg name="leftArm" ref="leftArm"></constructor-arg>
+		<constructor-arg name="rightArm" ref="rightArm"></constructor-arg>
+	</bean>
+	
+	
+	
+	<!-- MemberDAO memberDAO = new MemberDAO -->
+	<bean class="com.iu.s3.member.MemberDAO" id="memberDAO"></bean>
+
+	<!-- MemberService memberServie = new MemberService() -->
+	<bean class="com.iu.s3.member.MemberService" id="memberService">
+
+	<!-- memberService.setMemberDAO(memberDAO) -->
+		<property name="memberDAO" ref="memberDAO"></property>
+	</bean>
 </beans>
